@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,24 +180,23 @@
       letter-spacing: -0.03em;
       color: var(--cream);
       max-width: 900px;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       animation: fadeUp 0.8s 0.1s ease both;
     }
 
-    .hero-headline em {
-      font-style: normal;
-      color: var(--taupe);
-    }
-
-    .hero-sub {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.65;
-      color: var(--cream);
-      opacity: 0.55;
-      max-width: 560px;
+    .hero-rotating {
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      color: rgba(232,223,210,0.6);
       margin-bottom: 52px;
       animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-rotating #rotating-word {
+      color: var(--cream);
+      transition: opacity 0.3s ease;
     }
 
     .hero-actions {
@@ -892,6 +892,192 @@
       .section-header { flex-direction: column; align-items: flex-start; }
       footer { flex-direction: column; gap: 20px; text-align: center; }
     }
+
+    /* ─── BTN-GHOST AS BUTTON ─────────────────────────── */
+    button.btn-ghost {
+      background: none;
+      border: 1px solid rgba(232,223,210,0.3);
+      cursor: pointer;
+      font-family: 'Geist', sans-serif;
+    }
+
+    /* ─── MODAL ───────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(46,43,39,0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--ivory);
+      border-radius: 20px;
+      padding: 52px 48px;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 32px 80px rgba(46,43,39,0.3);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(46,43,39,0.12);
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      font-family: 'Geist', sans-serif;
+    }
+
+    .modal-close:hover { background: rgba(46,43,39,0.06); }
+    .modal-close svg { width: 14px; height: 14px; }
+
+    .modal-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--coal);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .modal-subtitle {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .modal-field {
+      margin-bottom: 14px;
+    }
+
+    .modal-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--coal);
+      opacity: 0.55;
+      margin-bottom: 7px;
+    }
+
+    .modal-field input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid rgba(46,43,39,0.14);
+      border-radius: 10px;
+      font-family: 'Geist', sans-serif;
+      font-size: 15px;
+      color: var(--coal);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .modal-field input::placeholder { color: var(--taupe); opacity: 0.55; }
+
+    .modal-field input:focus {
+      border-color: var(--coal);
+      box-shadow: 0 0 0 3px rgba(46,43,39,0.07);
+    }
+
+    .modal-submit {
+      width: 100%;
+      margin-top: 24px;
+      padding: 15px;
+      background: var(--coal);
+      color: var(--cream);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Geist', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .modal-submit:hover {
+      background: #1a1815;
+      transform: translateY(-1px);
+    }
+
+    .modal-submit:active { transform: translateY(0); }
+
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .modal-success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--coal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .modal-success-icon svg { width: 24px; height: 24px; }
+
+    .modal-success-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--coal);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .modal-success-text {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+
+    .modal-form.hidden { display: none; }
+    .modal-success.visible { display: block; }
   </style>
 </head>
 <body>
@@ -930,26 +1116,20 @@
     <div class="hero-glow"></div>
     <div class="hero-glow-2"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="hero-eyebrow-dot"></span>
-        Executive Search &amp; Sourcing
-      </div>
       <h1 class="hero-headline">
-        The right hire<br /><em>changes everything.</em>
+        The right hire<br />changes everything.
       </h1>
-      <p class="hero-sub">
-        Sourceable helps enterprise SaaS, cyber, and AI software companies build elite go-to-market teams — with a highly personalized, executive-level approach to every search.
+      <p class="hero-rotating">
+        We source elite talent for <span id="rotating-word">Sales</span> teams.
       </p>
       <div class="hero-actions">
         <a href="mailto:hello@sourceablerecruiting.com" class="btn-primary">
           Looking for Talent
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#2e2b27" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#services" class="btn-ghost">
-          Explore Services
-        </a>
+        <button onclick="openModal()" class="btn-ghost">
+          Find My Next Role
+        </button>
       </div>
-      <div class="hero-tagline">Client-first recruiting for growing companies &amp; standout candidates</div>
     </div>
   </section>
 
@@ -1303,6 +1483,19 @@
   </footer>
 
   <script>
+    // Rotating word
+    const rotatingWords = ['Sales', 'Revenue', 'Go-to-Market'];
+    let wordIndex = 0;
+    const rotatingEl = document.getElementById('rotating-word');
+    setInterval(() => {
+      rotatingEl.style.opacity = '0';
+      setTimeout(() => {
+        wordIndex = (wordIndex + 1) % rotatingWords.length;
+        rotatingEl.textContent = rotatingWords[wordIndex];
+        rotatingEl.style.opacity = '1';
+      }, 320);
+    }, 2200);
+
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -1324,6 +1517,85 @@
         nav.style.boxShadow = 'none';
       }
     });
+
+    // Modal
+    function openModal() {
+      document.getElementById('candidateModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('candidateModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close on overlay click
+    document.getElementById('candidateModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Form submit
+    document.getElementById('candidateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.querySelector('.modal-form').classList.add('hidden');
+      document.querySelector('.modal-success').classList.add('visible');
+    });
   </script>
+
+  <!-- CANDIDATE MODAL -->
+  <div class="modal-overlay" id="candidateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#2e2b27" stroke-width="1.75" stroke-linecap="round">
+          <path d="M1 1l12 12M13 1L1 13"/>
+        </svg>
+      </button>
+
+      <!-- Form -->
+      <div class="modal-form">
+        <p class="modal-eyebrow">For Candidates</p>
+        <h2 class="modal-title" id="modalTitle">Let's find your<br />next role.</h2>
+        <p class="modal-subtitle">Drop your details below and we'll be in touch when something great comes up in your space.</p>
+
+        <form id="candidateForm" novalidate>
+          <div class="modal-field">
+            <label for="candidate-name">Full Name</label>
+            <input type="text" id="candidate-name" name="name" placeholder="Jane Smith" required autocomplete="name" />
+          </div>
+          <div class="modal-field">
+            <label for="candidate-email">Email Address</label>
+            <input type="email" id="candidate-email" name="email" placeholder="jane@company.com" required autocomplete="email" />
+          </div>
+          <div class="modal-field">
+            <label for="candidate-phone">Phone Number</label>
+            <input type="tel" id="candidate-phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+          </div>
+          <div class="modal-field">
+            <label for="candidate-linkedin">LinkedIn URL</label>
+            <input type="url" id="candidate-linkedin" name="linkedin" placeholder="linkedin.com/in/janesmith" />
+          </div>
+          <button type="submit" class="modal-submit">Submit — I'm Ready</button>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div class="modal-success">
+        <div class="modal-success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </div>
+        <h3 class="modal-success-title">You're on our radar.</h3>
+        <p class="modal-success-text">Thanks for reaching out. We'll be in touch when a role comes up that's worth your time — no spam, no fluff.</p>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>
