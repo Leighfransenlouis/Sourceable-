@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sourceable — Executive Search & Sourcing</title>
+  <meta name="description" content="Sourceable helps enterprise SaaS, cyber, and AI software companies hire top-performing sales and go-to-market talent. The right hire changes everything." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --coal: #2e2b27;
+      --cream: #e8dfd2;
+      --slate: #7c776f;
+      --taupe: #9a938a;
+      --ivory: #f4f0e8;
+      --white: #ffffff;
+      --coal-80: rgba(46,43,39,0.8);
+      --coal-10: rgba(46,43,39,0.08);
+      --cream-20: rgba(232,223,210,0.2);
+      --cream-40: rgba(232,223,210,0.4);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Geist', sans-serif;
+      background: var(--ivory);
+      color: var(--coal);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(244,240,232,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(46,43,39,0.08);
+      transition: background 0.3s ease;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg {
+      height: 28px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--coal);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    .nav-cta {
+      background: var(--coal);
+      color: var(--cream) !important;
+      opacity: 1 !important;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: #1a1815 !important;
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--coal);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 48px 80px;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .hero-glow {
+      position: absolute;
+      bottom: -20%;
+      right: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse, rgba(232,223,210,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      top: 10%;
+      left: 30%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(232,223,210,0.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(232,223,210,0.25);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.7;
+      margin-bottom: 40px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cream);
+      opacity: 0.6;
+    }
+
+    .hero-headline {
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      max-width: 900px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--taupe);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--cream);
+      opacity: 0.55;
+      max-width: 560px;
+      margin-bottom: 52px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--cream);
+      color: var(--coal);
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #f4f0e8;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+
+    .btn-primary svg { transition: transform 0.2s; }
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(232,223,210,0.3);
+      color: var(--cream);
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+
+    .btn-ghost:hover { opacity: 1; border-color: rgba(232,223,210,0.6); }
+
+    .hero-tagline {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(232,223,210,0.1);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0.3;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    /* ─── PILLS / MARQUEE ─────────────────────────────── */
+    #pills {
+      background: var(--ivory);
+      padding: 64px 0;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(46,43,39,0.08);
+    }
+
+    .pills-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 32px;
+    }
+
+    .pills-track-wrapper {
+      overflow: hidden;
+      -webkit-mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+      mask: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    }
+
+    .pills-track {
+      display: flex;
+      gap: 12px;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+
+    .pills-track-2 {
+      display: flex;
+      gap: 12px;
+      width: max-content;
+      animation: marquee 28s linear infinite reverse;
+      margin-top: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid rgba(46,43,39,0.1);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--coal);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--taupe);
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── SERVICES ────────────────────────────────────── */
+    #services {
+      background: var(--coal);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232,223,210,0.2), transparent);
+    }
+
+    .section-header {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+    }
+
+    .section-title-dark { color: var(--coal); }
+
+    .section-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--cream);
+      opacity: 0.5;
+      max-width: 360px;
+      flex-shrink: 0;
+    }
+
+    .services-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .service-card {
+      background: rgba(232,223,210,0.04);
+      border: 1px solid rgba(232,223,210,0.08);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+
+    .service-card:hover { background: rgba(232,223,210,0.07); }
+
+    .service-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--taupe);
+      margin-bottom: 32px;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(232,223,210,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      transition: background 0.3s;
+    }
+
+    .service-card:hover .service-icon { background: rgba(232,223,210,0.15); }
+
+    .service-icon svg { width: 22px; height: 22px; }
+
+    .service-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .service-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--cream);
+      opacity: 0.45;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(232,223,210,0.15), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover::after { transform: scaleX(1); }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    #about {
+      background: var(--ivory);
+      padding: 120px 48px;
+    }
+
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card-main {
+      background: var(--coal);
+      border-radius: 16px;
+      padding: 52px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card-main::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -30%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(232,223,210,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .about-stat-num {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .about-stat-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--cream);
+      opacity: 0.45;
+      line-height: 1.4;
+    }
+
+    .about-quote {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.65;
+      color: var(--cream);
+      opacity: 0.7;
+      padding-top: 36px;
+      border-top: 1px solid rgba(232,223,210,0.1);
+      font-style: italic;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -24px;
+      right: 40px;
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 20px 60px rgba(46,43,39,0.2);
+    }
+
+    .about-badge-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--coal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .about-badge-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--coal);
+      line-height: 1.3;
+    }
+
+    .about-badge-sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--slate);
+    }
+
+    .about-copy { padding-top: 8px; }
+
+    .about-copy .section-eyebrow { color: var(--taupe); }
+
+    .about-copy .section-title { color: var(--coal); margin-bottom: 28px; }
+
+    .about-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--slate);
+      margin-bottom: 20px;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .about-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--coal);
+    }
+
+    .about-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--coal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .about-check svg { width: 10px; height: 10px; }
+
+    /* ─── TESTIMONIALS ────────────────────────────────── */
+    #testimonials {
+      background: var(--coal);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(232,223,210,0.15), transparent);
+    }
+
+    .testimonials-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 72px;
+    }
+
+    .testi-card {
+      background: rgba(232,223,210,0.04);
+      border: 1px solid rgba(232,223,210,0.08);
+      border-radius: 16px;
+      padding: 40px 36px;
+      position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .testi-card:hover {
+      background: rgba(232,223,210,0.07);
+      border-color: rgba(232,223,210,0.14);
+    }
+
+    .testi-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 24px;
+    }
+
+    .testi-stars svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--taupe);
+    }
+
+    .testi-quote {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--cream);
+      opacity: 0.7;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .testi-divider {
+      width: 32px;
+      height: 1px;
+      background: rgba(232,223,210,0.2);
+      margin-bottom: 24px;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testi-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(232,223,210,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cream);
+      flex-shrink: 0;
+    }
+
+    .testi-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 3px;
+    }
+
+    .testi-role {
+      font-size: 12px;
+      color: var(--taupe);
+      font-weight: 400;
+    }
+
+    .testi-featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      background: rgba(232,223,210,0.06);
+      border-color: rgba(232,223,210,0.12);
+      margin-bottom: 8px;
+    }
+
+    .testi-featured .testi-quote {
+      font-size: 20px;
+      opacity: 0.85;
+    }
+
+    .testi-featured-right {
+      border-left: 1px solid rgba(232,223,210,0.1);
+      padding-left: 48px;
+    }
+
+    .testi-company {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-top: 4px;
+    }
+
+    /* ─── CONTACT / CTA ───────────────────────────────── */
+    #contact {
+      background: var(--ivory);
+      padding: 120px 48px;
+    }
+
+    .contact-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-inner .section-eyebrow {
+      justify-content: center;
+      display: flex;
+      color: var(--taupe);
+      margin-bottom: 24px;
+    }
+
+    .contact-inner .section-title {
+      color: var(--coal);
+      margin-bottom: 20px;
+    }
+
+    .contact-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--slate);
+      margin-bottom: 48px;
+    }
+
+    .contact-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--coal);
+      color: var(--cream);
+      padding: 16px 34px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary-dark:hover {
+      background: #1a1815;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid rgba(46,43,39,0.25);
+      color: var(--coal);
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-outline-dark:hover {
+      border-color: var(--coal);
+      background: rgba(46,43,39,0.04);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--coal);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(232,223,210,0.08);
+    }
+
+    .footer-logo svg { height: 22px; width: auto; }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--cream);
+      opacity: 0.3;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--cream);
+      opacity: 0.4;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .footer-links a:hover { opacity: 0.8; }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testi-featured { grid-column: 1; grid-template-columns: 1fr; gap: 28px; }
+      .testi-featured-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(232,223,210,0.1); padding-top: 28px; }
+      .about-inner { grid-template-columns: 1fr; gap: 60px; }
+      .about-card-main { margin-bottom: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      #hero, #services, #about, #testimonials, #contact { padding-left: 24px; padding-right: 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <!-- Sourceable logo (light version for light nav bg) -->
+      <svg viewBox="160 460 720 120" xmlns="http://www.w3.org/2000/svg">
+        <style>.nl0{fill:#2E2B27}.nl1{fill:#2E2B27;opacity:0.35}</style>
+        <path class="nl0" d="M233.9,515.4c-4.6-2-10.9-3.5-18.8-4.6c-3.4-0.5-6.1-1.1-8.1-1.8c-2-0.7-3.4-1.6-4.3-2.8c-0.9-1.2-1.3-2.7-1.3-4.5c0-2.5,1-4.5,3-6s4.8-2.3,8.5-2.3c2.4,0,4.6,0.4,6.3,1.4c1.7,1,3.1,2.3,4.3,4c1.1,1.7,1.8,3.7,2.1,6.1l20.8-0.8c-0.6-4.8-2.3-9.2-4.9-13c-2.6-3.8-6.3-6.8-11-9c-4.7-2.2-10.6-3.3-17.6-3.3c-10.9,0-19.1,2.2-24.6,6.6s-8.2,10.1-8.2,17.2c0,4.3,1,7.9,2.8,10.8c1.9,3,5,5.4,9.4,7.2c4.5,1.8,10.6,3.4,18.4,4.8c4.2,0.6,7.4,1.3,9.6,2.1c2.1,0.8,3.6,1.7,4.3,2.8c0.7,1,1.1,2.3,1.1,3.9c0,2.5-1,4.3-3.1,5.5c-2,1.2-4.9,1.8-8.6,1.8c-4.5,0-7.9-1-10.2-2.9c-2.3-1.9-3.8-4.6-4.4-8.1l-21,0.7c0.3,4.9,1.9,9.2,4.6,12.9s6.6,6.6,11.8,8.8c5.2,2.1,11.6,3.2,19.2,3.2c6.7,0,12.5-0.9,17.3-2.7c4.9-1.8,8.7-4.3,11.5-7.6c2.7-3.3,4.1-7.3,4.1-12.1c0-4.3-1-8-3-10.9C241.9,519.8,238.5,517.4,233.9,515.4z"/>
+        <path class="nl0" d="M307.5,483.5c-5.6-3.2-12.2-4.8-19.7-4.8s-14.1,1.6-19.7,4.8c-5.6,3.3-10,7.8-13.1,13.5c-3.1,5.8-4.7,12.6-4.7,20.4c0,7.8,1.6,14.6,4.7,20.4c3.1,5.8,7.5,10.3,13.1,13.5c5.6,3.2,12.2,4.8,19.7,4.8c7.6,0,14.1-1.6,19.7-4.8c5.6-3.2,10-7.7,13.1-13.5c3.1-5.8,4.7-12.6,4.7-20.4c0-7.9-1.6-14.6-4.7-20.4C317.5,491.2,313.1,486.7,307.5,483.5z M299.8,534.2c-2.8,4-6.8,6-12,6c-5.1,0-9.1-2-12-6c-2.9-4-4.3-9.6-4.3-16.8s1.4-12.8,4.3-16.8c2.8-4,6.8-6,12-6c5.1,0,9.1,2,12,6c2.9,4,4.3,9.6,4.3,16.8S302.7,530.2,299.8,534.2z"/>
+        <path class="nl0" d="M377.7,522.4c0,5.8-1.2,10.1-3.5,13c-2.4,2.9-5.7,4.3-9.9,4.3c-3.8,0-6.6-1.3-8.3-3.9s-2.6-6.8-2.6-12.5v-42.8h-20.7v47.6c0,8.8,2.1,15.7,6.4,20.6s10.3,7.4,17.9,7.4c7,0,12.5-1.9,16.6-5.5c2.4-2.1,4.2-4.8,5.6-8.1l0.3,12.1h18.9v-74h-20.7V522.4z"/>
+        <path class="nl0" d="M455.4,480.4h-6.8c-5.4,0-9.6,1.7-12.6,5c-2.1,2.3-3.8,5.7-5,10.1l-0.5-15.1h-19.6v73.9h20.7v-41.5c0-3.8,0.7-6.8,1.9-9c1.3-2.2,3.1-3.8,5.6-4.8s5.6-1.5,9.5-1.5h6.8V480.4z"/>
+        <path class="nl0" d="M492,494.8c4,0,7.3,1.2,9.9,3.5c2.6,2.3,4.3,5.8,4.9,10.4l21.4-1c-0.7-6.1-2.7-11.3-5.9-15.6c-3.2-4.3-7.4-7.6-12.6-9.9s-11.1-3.5-17.6-3.5c-7.5,0-14.1,1.6-19.7,4.8c-5.6,3.3-10,7.8-13.1,13.5c-3.1,5.8-4.7,12.6-4.7,20.4c0,7.8,1.6,14.6,4.7,20.4c3.1,5.8,7.5,10.3,13.1,13.5c5.6,3.2,12.2,4.8,19.7,4.8c6.7,0,12.6-1.2,17.7-3.8c5.2-2.4,9.4-5.8,12.6-10.3c3.1-4.5,5.1-9.7,5.7-15.8l-21.4-0.8c-0.5,5-2.1,8.7-4.8,11.1c-2.6,2.5-5.9,3.7-9.9,3.7c-5.1,0-9.1-2-12-6c-2.9-4-4.3-9.6-4.3-16.8s1.4-12.7,4.3-16.7C482.8,496.8,486.8,494.8,492,494.8z"/>
+        <path class="nl0" d="M603.5,518.7c0-8.3-1.5-15.4-4.5-21.4s-7.2-10.6-12.6-13.8c-5.4-3.2-11.8-4.8-19.2-4.8c-7.5,0-14.1,1.6-19.6,4.8c-5.5,3.3-9.8,7.8-12.9,13.5c-3.1,5.8-4.6,12.6-4.6,20.4c0,7.8,1.5,14.6,4.6,20.4s7.4,10.3,13,13.5c5.6,3.2,12.2,4.8,19.7,4.8c8.9,0,16.5-2.1,22.7-6.5c6.3-4.1,10.4-9.8,12.3-17.2l-20.8-1.2c-1,3.1-2.7,5.3-5,6.8c-2.4,1.5-5.3,2.2-8.8,2.2c-4.8,0-8.6-1.4-11.5-4.3c-2.9-2.8-4.5-7.2-4.8-13.1h52V518.7z M551.5,510.3c0.6-5.2,2.3-9.2,5-11.9c2.8-2.8,6.4-4.2,10.7-4.2c4.4,0,7.9,1.3,10.6,4c2.7,2.6,4.2,6.7,4.5,12.1H551.5z"/>
+        <g class="nl1">
+          <path d="M670.6,543.1c-0.6-0.7-0.9-1.8-0.9-3.5v-30.2c0-9.3-2.5-16.6-7.5-21.9c-4.9-5.3-12.1-7.9-21.5-7.9c-8.3,0-15.1,2.1-20.4,6.4s-8.6,9.9-10,16.8l12.3,1c1.1-4.2,3.2-7.4,6.1-9.7s6.9-3.4,12-3.4c5.8,0,10.1,1.6,13,4.6c2.9,3,4.3,7.6,4.3,13.8l-25.9,4.8c-8,1.5-13.8,4-17.5,7.6s-5.5,8.5-5.5,14.8c0,6.2,2.2,11.1,6.7,14.6s10.5,5.2,18,5.2c4.1,0,8-0.7,11.8-2.3c3.6-1.4,6.7-3.4,9.2-5.9c1.5-1.5,2.7-3.2,3.5-4.9c0.2,1.9,0.6,3.6,1.2,5c0.9,2.3,2.4,3.9,4.5,5s4.8,1.6,8.1,1.6c0.9,0,1.8-0.1,2.6-0.1s1.4-0.1,1.8-0.2v-10.2h-2.9C672.2,544.1,671.2,543.8,670.6,543.1z M658.1,524.4c0,4.1-1,7.7-2.8,11c-1.8,3.2-4.4,5.8-7.9,7.7c-3.5,1.9-7.6,2.8-12.5,2.8c-4.2,0-7.6-1-9.9-2.8c-2.5-1.8-3.7-4.5-3.7-7.9c0-3.1,0.9-5.5,2.8-7.4c1.9-1.9,5.3-3.3,10.3-4.2l23.7-4.4V524.4z"/>
+          <path d="M733.8,484.3c-4.7-3.1-10.3-4.7-16.7-4.7c-5.1,0-9.5,1.3-13.4,3.7c-3.9,2.4-6.8,5.2-8.6,8.2v-35.1h-11.6v98H694l0.4-11c2.1,3.9,5.1,7,9.1,9.3c3.9,2.3,8.4,3.4,13.5,3.4c6.4,0,12-1.6,16.8-4.8c4.7-3.1,8.3-7.5,10.9-13.2c2.6-5.7,3.9-12.5,3.9-20.3c0-7.8-1.3-14.6-3.9-20.3C742.1,491.8,738.5,487.4,733.8,484.3z M730.9,537.7c-3.6,4.9-8.4,7.3-14.6,7.3c-4.4,0-8.3-1-11.5-3.3s-5.6-5.4-7.3-9.5c-1.8-4.1-2.6-8.9-2.6-14.4c0-5.7,0.9-10.6,2.6-14.6s4.2-7.1,7.4-9.3c3.2-2.1,7.1-3.2,11.6-3.2c6,0,10.8,2.4,14.4,7.2c3.6,4.8,5.4,11.4,5.4,19.9C736.3,526.3,734.5,532.9,730.9,537.7z"/>
+          <path d="M772.2,543c-0.8-0.8-1.2-1.9-1.2-3.4v-83.2h-11.6v84.2c0,4.8,1.3,8.3,4,10.5c2.6,2.2,6.1,3.3,10.3,3.3h8.2v-10.2h-6.3C774.1,544.2,773,543.8,772.2,543z"/>
+          <path d="M850.2,518c0-8.1-1.4-15.1-4.1-20.8s-6.5-10-11.4-13c-4.8-3-10.5-4.5-16.8-4.5c-6.8,0-12.6,1.6-17.5,4.8c-5,3.2-8.8,7.6-11.5,13.3c-2.7,5.7-4.1,12.4-4.1,20.1s1.4,14.5,4.1,20.2c2.7,5.7,6.6,10.2,11.6,13.3c5,3.1,11,4.7,17.9,4.7c7.8,0,14.3-2.1,19.6-6.2c5.4-4.2,9.1-9.6,11-16.1l-12.4-1c-1.2,3.7-3.3,6.6-6.4,8.9c-3.1,2.3-7,3.4-11.8,3.4c-6.3,0-11.4-1.9-15.1-5.9s-5.8-9.9-6.3-17.7h53.2V518z M797,511.2c1-6.8,3.4-11.9,6.9-15.4c3.7-3.5,8.3-5.2,13.9-5.2c5.5,0,10,1.7,13.5,5c3.5,3.3,5.5,8.5,6.1,15.6H797z"/>
+        </g>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="mailto:hello@sourceablerecruiting.com" class="nav-cta">Work With Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grain"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Executive Search &amp; Sourcing
+      </div>
+      <h1 class="hero-headline">
+        The right hire<br /><em>changes everything.</em>
+      </h1>
+      <p class="hero-sub">
+        Sourceable helps enterprise SaaS, cyber, and AI software companies build elite go-to-market teams — with a highly personalized, executive-level approach to every search.
+      </p>
+      <div class="hero-actions">
+        <a href="mailto:hello@sourceablerecruiting.com" class="btn-primary">
+          Looking for Talent
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#2e2b27" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#services" class="btn-ghost">
+          Explore Services
+        </a>
+      </div>
+      <div class="hero-tagline">Client-first recruiting for growing companies &amp; standout candidates</div>
+    </div>
+  </section>
+
+  <!-- PILLS -->
+  <section id="pills">
+    <p class="pills-label">Roles we fill across industries</p>
+    <div class="pills-track-wrapper">
+      <div class="pills-track">
+        <!-- Row 1 — duplicated for seamless loop -->
+        <span class="pill"><span class="pill-dot"></span>VP of Sales</span>
+        <span class="pill"><span class="pill-dot"></span>Enterprise AE</span>
+        <span class="pill"><span class="pill-dot"></span>Chief Revenue Officer</span>
+        <span class="pill"><span class="pill-dot"></span>SDR / BDR</span>
+        <span class="pill"><span class="pill-dot"></span>Revenue Operations</span>
+        <span class="pill"><span class="pill-dot"></span>Sales Engineer</span>
+        <span class="pill"><span class="pill-dot"></span>CMO</span>
+        <span class="pill"><span class="pill-dot"></span>Head of Growth</span>
+        <span class="pill"><span class="pill-dot"></span>VP of Marketing</span>
+        <span class="pill"><span class="pill-dot"></span>Channel Sales</span>
+        <span class="pill"><span class="pill-dot"></span>Customer Success</span>
+        <span class="pill"><span class="pill-dot"></span>Partner Manager</span>
+        <span class="pill"><span class="pill-dot"></span>VP of Sales</span>
+        <span class="pill"><span class="pill-dot"></span>Enterprise AE</span>
+        <span class="pill"><span class="pill-dot"></span>Chief Revenue Officer</span>
+        <span class="pill"><span class="pill-dot"></span>SDR / BDR</span>
+        <span class="pill"><span class="pill-dot"></span>Revenue Operations</span>
+        <span class="pill"><span class="pill-dot"></span>Sales Engineer</span>
+        <span class="pill"><span class="pill-dot"></span>CMO</span>
+        <span class="pill"><span class="pill-dot"></span>Head of Growth</span>
+        <span class="pill"><span class="pill-dot"></span>VP of Marketing</span>
+        <span class="pill"><span class="pill-dot"></span>Channel Sales</span>
+        <span class="pill"><span class="pill-dot"></span>Customer Success</span>
+        <span class="pill"><span class="pill-dot"></span>Partner Manager</span>
+      </div>
+    </div>
+    <div class="pills-track-wrapper" style="margin-top:12px">
+      <div class="pills-track-2">
+        <span class="pill"><span class="pill-dot"></span>Enterprise SaaS</span>
+        <span class="pill"><span class="pill-dot"></span>Cybersecurity</span>
+        <span class="pill"><span class="pill-dot"></span>AI / ML Software</span>
+        <span class="pill"><span class="pill-dot"></span>Cloud Infrastructure</span>
+        <span class="pill"><span class="pill-dot"></span>DevTools</span>
+        <span class="pill"><span class="pill-dot"></span>FinTech</span>
+        <span class="pill"><span class="pill-dot"></span>Data & Analytics</span>
+        <span class="pill"><span class="pill-dot"></span>Identity & Security</span>
+        <span class="pill"><span class="pill-dot"></span>Compliance Tech</span>
+        <span class="pill"><span class="pill-dot"></span>Zero Trust</span>
+        <span class="pill"><span class="pill-dot"></span>Endpoint Security</span>
+        <span class="pill"><span class="pill-dot"></span>GTM Platforms</span>
+        <span class="pill"><span class="pill-dot"></span>Enterprise SaaS</span>
+        <span class="pill"><span class="pill-dot"></span>Cybersecurity</span>
+        <span class="pill"><span class="pill-dot"></span>AI / ML Software</span>
+        <span class="pill"><span class="pill-dot"></span>Cloud Infrastructure</span>
+        <span class="pill"><span class="pill-dot"></span>DevTools</span>
+        <span class="pill"><span class="pill-dot"></span>FinTech</span>
+        <span class="pill"><span class="pill-dot"></span>Data & Analytics</span>
+        <span class="pill"><span class="pill-dot"></span>Identity & Security</span>
+        <span class="pill"><span class="pill-dot"></span>Compliance Tech</span>
+        <span class="pill"><span class="pill-dot"></span>Zero Trust</span>
+        <span class="pill"><span class="pill-dot"></span>Endpoint Security</span>
+        <span class="pill"><span class="pill-dot"></span>GTM Platforms</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-eyebrow">What we do</p>
+        <h2 class="section-title">Built for<br />high-growth teams.</h2>
+      </div>
+      <p class="section-desc">Every engagement is treated like a board-level priority. We go deep so you don't have to start over.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <p class="service-num">01</p>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Executive Search</h3>
+        <p class="service-text">Full-cycle retained and contingency search for VP-level and above go-to-market leaders. We map the entire market before presenting a curated shortlist.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <p class="service-num">02</p>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Sales Team Builds</h3>
+        <p class="service-text">Rapidly scale your revenue org with elite individual contributors — AEs, SDRs, SEs — who have a proven track record in your exact competitive landscape.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <p class="service-num">03</p>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Go-to-Market Recruiting</h3>
+        <p class="service-text">Marketing, RevOps, Customer Success, and Partnerships hires who complement your sales motion and accelerate pipeline from day one.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <p class="service-num">04</p>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Cyber & AI Specialist Hiring</h3>
+        <p class="service-text">Deep-domain expertise in cybersecurity and AI/ML software markets. We know the landscape, the players, and the comp expectations before the first call.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <p class="service-num">05</p>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Talent Advisory</h3>
+        <p class="service-text">Compensation benchmarking, org design strategy, and interview process consulting — so you attract and close the best talent without losing them to the competition.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <p class="service-num">06</p>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Guaranteed Placements</h3>
+        <p class="service-text">Every search comes with a replacement guarantee. We stand behind our work because we only present candidates we'd stake our reputation on.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-visual reveal">
+        <div class="about-card-main">
+          <div class="about-stats">
+            <div>
+              <div class="about-stat-num">94%</div>
+              <div class="about-stat-label">of placed candidates<br />still thriving at 1 year</div>
+            </div>
+            <div>
+              <div class="about-stat-num">18d</div>
+              <div class="about-stat-label">average time<br />to shortlist</div>
+            </div>
+            <div>
+              <div class="about-stat-num">200+</div>
+              <div class="about-stat-label">placements in<br />SaaS & cyber</div>
+            </div>
+            <div>
+              <div class="about-stat-num">$0</div>
+              <div class="about-stat-label">fee if we don't<br />find your hire</div>
+            </div>
+          </div>
+          <p class="about-quote">"We don't post and pray. We hunt — quietly, precisely, and on your timeline."</p>
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="about-badge-text">100% Client-First</div>
+            <div class="about-badge-sub">No job boards. No spray-and-pray.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-copy reveal reveal-delay-1">
+        <p class="section-eyebrow">About Sourceable</p>
+        <h2 class="section-title section-title-dark">A recruiter who<br />speaks your language.</h2>
+        <p class="about-body">Sourceable is a boutique executive search and recruiting firm built specifically for the enterprise software world. We work exclusively in SaaS, cybersecurity, and AI — which means every search benefits from years of pattern recognition in your exact market.</p>
+        <p class="about-body">You won't be assigned a junior coordinator. You get direct access to a seasoned recruiting partner who has personally placed hundreds of high-performing sales and GTM professionals at companies ranging from Series A startups to publicly traded enterprises.</p>
+        <ul class="about-list">
+          <li>
+            <span class="about-check">
+              <svg viewBox="0 0 10 10" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5l2 2 4-4"/></svg>
+            </span>
+            Exclusive focus on enterprise SaaS, cyber &amp; AI markets
+          </li>
+          <li>
+            <span class="about-check">
+              <svg viewBox="0 0 10 10" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5l2 2 4-4"/></svg>
+            </span>
+            Senior-led search — always. No hand-offs to juniors.
+          </li>
+          <li>
+            <span class="about-check">
+              <svg viewBox="0 0 10 10" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5l2 2 4-4"/></svg>
+            </span>
+            Retained, contingency &amp; project-based engagements
+          </li>
+          <li>
+            <span class="about-check">
+              <svg viewBox="0 0 10 10" fill="none" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5l2 2 4-4"/></svg>
+            </span>
+            Full replacement guarantee on every placement
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="testimonials-inner">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-eyebrow">Testimonials</p>
+          <h2 class="section-title">Trusted by teams<br />that demand more.</h2>
+        </div>
+        <p class="section-desc" style="color:var(--cream);opacity:0.45">What our clients say about working with Sourceable.</p>
+      </div>
+      <div class="testimonials-grid">
+
+        <!-- Featured -->
+        <div class="testi-card testi-featured reveal">
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+              <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+              <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+              <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+              <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            </div>
+            <p class="testi-quote">"We had been searching for a VP of Sales for six months on our own — Sourceable delivered three exceptional candidates in under three weeks. The hire we made is now one of the best decisions we've made as a company."</p>
+          </div>
+          <div class="testi-featured-right">
+            <div class="testi-divider"></div>
+            <div class="testi-author">
+              <div class="testi-avatar">JR</div>
+              <div>
+                <div class="testi-name">James R.</div>
+                <div class="testi-role">CEO</div>
+                <div class="testi-company">Series B Cybersecurity Platform</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="testi-stars">
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+          </div>
+          <p class="testi-quote">"Unlike the big agencies, Sourceable actually understood our product and ICP. The candidates they sent already knew our competitive landscape — onboarding was a fraction of the usual time."</p>
+          <div class="testi-divider"></div>
+          <div class="testi-author">
+            <div class="testi-avatar">MT</div>
+            <div>
+              <div class="testi-name">Michelle T.</div>
+              <div class="testi-role">CRO</div>
+              <div class="testi-company">Enterprise AI SaaS</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal reveal-delay-1">
+          <div class="testi-stars">
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+          </div>
+          <p class="testi-quote">"We scaled from 4 to 22 AEs in one quarter with Sourceable's help. The quality of candidates was consistently high and attrition has been nearly zero. I won't use anyone else."</p>
+          <div class="testi-divider"></div>
+          <div class="testi-author">
+            <div class="testi-avatar">DK</div>
+            <div>
+              <div class="testi-name">David K.</div>
+              <div class="testi-role">VP of Sales</div>
+              <div class="testi-company">Cloud Security Startup</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal reveal-delay-2">
+          <div class="testi-stars">
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+            <svg viewBox="0 0 14 14"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5z"/></svg>
+          </div>
+          <p class="testi-quote">"The communication alone set Sourceable apart. We always knew where we were in the process. Other firms just go dark — this was like having a recruiting co-founder."</p>
+          <div class="testi-divider"></div>
+          <div class="testi-author">
+            <div class="testi-avatar">SL</div>
+            <div>
+              <div class="testi-name">Sarah L.</div>
+              <div class="testi-role">Head of People</div>
+              <div class="testi-company">Series C GTM Platform</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section id="contact">
+    <div class="contact-inner">
+      <p class="section-eyebrow">Get started</p>
+      <h2 class="section-title section-title-dark reveal">Ready to make<br />your next great hire?</h2>
+      <p class="contact-body reveal reveal-delay-1">Tell us about the role, the team, and the problem you're trying to solve. We'll take it from there — quietly, efficiently, and without the noise.</p>
+      <div class="contact-ctas reveal reveal-delay-2">
+        <a href="mailto:hello@sourceablerecruiting.com" class="btn-primary-dark">
+          Start a Search
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#e8dfd2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="mailto:hello@sourceablerecruiting.com" class="btn-outline-dark">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <svg viewBox="160 460 720 120" xmlns="http://www.w3.org/2000/svg">
+        <style>.fl0{fill:#e8dfd2}.fl1{fill:#e8dfd2;opacity:0.35}</style>
+        <path class="fl0" d="M233.9,515.4c-4.6-2-10.9-3.5-18.8-4.6c-3.4-0.5-6.1-1.1-8.1-1.8c-2-0.7-3.4-1.6-4.3-2.8c-0.9-1.2-1.3-2.7-1.3-4.5c0-2.5,1-4.5,3-6s4.8-2.3,8.5-2.3c2.4,0,4.6,0.4,6.3,1.4c1.7,1,3.1,2.3,4.3,4c1.1,1.7,1.8,3.7,2.1,6.1l20.8-0.8c-0.6-4.8-2.3-9.2-4.9-13c-2.6-3.8-6.3-6.8-11-9c-4.7-2.2-10.6-3.3-17.6-3.3c-10.9,0-19.1,2.2-24.6,6.6s-8.2,10.1-8.2,17.2c0,4.3,1,7.9,2.8,10.8c1.9,3,5,5.4,9.4,7.2c4.5,1.8,10.6,3.4,18.4,4.8c4.2,0.6,7.4,1.3,9.6,2.1c2.1,0.8,3.6,1.7,4.3,2.8c0.7,1,1.1,2.3,1.1,3.9c0,2.5-1,4.3-3.1,5.5c-2,1.2-4.9,1.8-8.6,1.8c-4.5,0-7.9-1-10.2-2.9c-2.3-1.9-3.8-4.6-4.4-8.1l-21,0.7c0.3,4.9,1.9,9.2,4.6,12.9s6.6,6.6,11.8,8.8c5.2,2.1,11.6,3.2,19.2,3.2c6.7,0,12.5-0.9,17.3-2.7c4.9-1.8,8.7-4.3,11.5-7.6c2.7-3.3,4.1-7.3,4.1-12.1c0-4.3-1-8-3-10.9C241.9,519.8,238.5,517.4,233.9,515.4z"/>
+        <path class="fl0" d="M307.5,483.5c-5.6-3.2-12.2-4.8-19.7-4.8s-14.1,1.6-19.7,4.8c-5.6,3.3-10,7.8-13.1,13.5c-3.1,5.8-4.7,12.6-4.7,20.4c0,7.8,1.6,14.6,4.7,20.4c3.1,5.8,7.5,10.3,13.1,13.5c5.6,3.2,12.2,4.8,19.7,4.8c7.6,0,14.1-1.6,19.7-4.8c5.6-3.2,10-7.7,13.1-13.5c3.1-5.8,4.7-12.6,4.7-20.4c0-7.9-1.6-14.6-4.7-20.4C317.5,491.2,313.1,486.7,307.5,483.5z M299.8,534.2c-2.8,4-6.8,6-12,6c-5.1,0-9.1-2-12-6c-2.9-4-4.3-9.6-4.3-16.8s1.4-12.8,4.3-16.8c2.8-4,6.8-6,12-6c5.1,0,9.1,2,12,6c2.9,4,4.3,9.6,4.3,16.8S302.7,530.2,299.8,534.2z"/>
+        <path class="fl0" d="M377.7,522.4c0,5.8-1.2,10.1-3.5,13c-2.4,2.9-5.7,4.3-9.9,4.3c-3.8,0-6.6-1.3-8.3-3.9s-2.6-6.8-2.6-12.5v-42.8h-20.7v47.6c0,8.8,2.1,15.7,6.4,20.6s10.3,7.4,17.9,7.4c7,0,12.5-1.9,16.6-5.5c2.4-2.1,4.2-4.8,5.6-8.1l0.3,12.1h18.9v-74h-20.7V522.4z"/>
+        <path class="fl0" d="M455.4,480.4h-6.8c-5.4,0-9.6,1.7-12.6,5c-2.1,2.3-3.8,5.7-5,10.1l-0.5-15.1h-19.6v73.9h20.7v-41.5c0-3.8,0.7-6.8,1.9-9c1.3-2.2,3.1-3.8,5.6-4.8s5.6-1.5,9.5-1.5h6.8V480.4z"/>
+        <path class="fl0" d="M492,494.8c4,0,7.3,1.2,9.9,3.5c2.6,2.3,4.3,5.8,4.9,10.4l21.4-1c-0.7-6.1-2.7-11.3-5.9-15.6c-3.2-4.3-7.4-7.6-12.6-9.9s-11.1-3.5-17.6-3.5c-7.5,0-14.1,1.6-19.7,4.8c-5.6,3.3-10,7.8-13.1,13.5c-3.1,5.8-4.7,12.6-4.7,20.4c0,7.8,1.6,14.6,4.7,20.4c3.1,5.8,7.5,10.3,13.1,13.5c5.6,3.2,12.2,4.8,19.7,4.8c6.7,0,12.6-1.2,17.7-3.8c5.2-2.4,9.4-5.8,12.6-10.3c3.1-4.5,5.1-9.7,5.7-15.8l-21.4-0.8c-0.5,5-2.1,8.7-4.8,11.1c-2.6,2.5-5.9,3.7-9.9,3.7c-5.1,0-9.1-2-12-6c-2.9-4-4.3-9.6-4.3-16.8s1.4-12.7,4.3-16.7C482.8,496.8,486.8,494.8,492,494.8z"/>
+        <path class="fl0" d="M603.5,518.7c0-8.3-1.5-15.4-4.5-21.4s-7.2-10.6-12.6-13.8c-5.4-3.2-11.8-4.8-19.2-4.8c-7.5,0-14.1,1.6-19.6,4.8c-5.5,3.3-9.8,7.8-12.9,13.5c-3.1,5.8-4.6,12.6-4.6,20.4c0,7.8,1.5,14.6,4.6,20.4s7.4,10.3,13,13.5c5.6,3.2,12.2,4.8,19.7,4.8c8.9,0,16.5-2.1,22.7-6.5c6.3-4.1,10.4-9.8,12.3-17.2l-20.8-1.2c-1,3.1-2.7,5.3-5,6.8c-2.4,1.5-5.3,2.2-8.8,2.2c-4.8,0-8.6-1.4-11.5-4.3c-2.9-2.8-4.5-7.2-4.8-13.1h52V518.7z M551.5,510.3c0.6-5.2,2.3-9.2,5-11.9c2.8-2.8,6.4-4.2,10.7-4.2c4.4,0,7.9,1.3,10.6,4c2.7,2.6,4.2,6.7,4.5,12.1H551.5z"/>
+        <g class="fl1">
+          <path d="M670.6,543.1c-0.6-0.7-0.9-1.8-0.9-3.5v-30.2c0-9.3-2.5-16.6-7.5-21.9c-4.9-5.3-12.1-7.9-21.5-7.9c-8.3,0-15.1,2.1-20.4,6.4s-8.6,9.9-10,16.8l12.3,1c1.1-4.2,3.2-7.4,6.1-9.7s6.9-3.4,12-3.4c5.8,0,10.1,1.6,13,4.6c2.9,3,4.3,7.6,4.3,13.8l-25.9,4.8c-8,1.5-13.8,4-17.5,7.6s-5.5,8.5-5.5,14.8c0,6.2,2.2,11.1,6.7,14.6s10.5,5.2,18,5.2c4.1,0,8-0.7,11.8-2.3c3.6-1.4,6.7-3.4,9.2-5.9c1.5-1.5,2.7-3.2,3.5-4.9c0.2,1.9,0.6,3.6,1.2,5c0.9,2.3,2.4,3.9,4.5,5s4.8,1.6,8.1,1.6c0.9,0,1.8-0.1,2.6-0.1s1.4-0.1,1.8-0.2v-10.2h-2.9C672.2,544.1,671.2,543.8,670.6,543.1z M658.1,524.4c0,4.1-1,7.7-2.8,11c-1.8,3.2-4.4,5.8-7.9,7.7c-3.5,1.9-7.6,2.8-12.5,2.8c-4.2,0-7.6-1-9.9-2.8c-2.5-1.8-3.7-4.5-3.7-7.9c0-3.1,0.9-5.5,2.8-7.4c1.9-1.9,5.3-3.3,10.3-4.2l23.7-4.4V524.4z"/>
+          <path d="M733.8,484.3c-4.7-3.1-10.3-4.7-16.7-4.7c-5.1,0-9.5,1.3-13.4,3.7c-3.9,2.4-6.8,5.2-8.6,8.2v-35.1h-11.6v98H694l0.4-11c2.1,3.9,5.1,7,9.1,9.3c3.9,2.3,8.4,3.4,13.5,3.4c6.4,0,12-1.6,16.8-4.8c4.7-3.1,8.3-7.5,10.9-13.2c2.6-5.7,3.9-12.5,3.9-20.3c0-7.8-1.3-14.6-3.9-20.3C742.1,491.8,738.5,487.4,733.8,484.3z M730.9,537.7c-3.6,4.9-8.4,7.3-14.6,7.3c-4.4,0-8.3-1-11.5-3.3s-5.6-5.4-7.3-9.5c-1.8-4.1-2.6-8.9-2.6-14.4c0-5.7,0.9-10.6,2.6-14.6s4.2-7.1,7.4-9.3c3.2-2.1,7.1-3.2,11.6-3.2c6,0,10.8,2.4,14.4,7.2c3.6,4.8,5.4,11.4,5.4,19.9C736.3,526.3,734.5,532.9,730.9,537.7z"/>
+          <path d="M772.2,543c-0.8-0.8-1.2-1.9-1.2-3.4v-83.2h-11.6v84.2c0,4.8,1.3,8.3,4,10.5c2.6,2.2,6.1,3.3,10.3,3.3h8.2v-10.2h-6.3C774.1,544.2,773,543.8,772.2,543z"/>
+          <path d="M850.2,518c0-8.1-1.4-15.1-4.1-20.8s-6.5-10-11.4-13c-4.8-3-10.5-4.5-16.8-4.5c-6.8,0-12.6,1.6-17.5,4.8c-5,3.2-8.8,7.6-11.5,13.3c-2.7,5.7-4.1,12.4-4.1,20.1s1.4,14.5,4.1,20.2c2.7,5.7,6.6,10.2,11.6,13.3c5,3.1,11,4.7,17.9,4.7c7.8,0,14.3-2.1,19.6-6.2c5.4-4.2,9.1-9.6,11-16.1l-12.4-1c-1.2,3.7-3.3,6.6-6.4,8.9c-3.1,2.3-7,3.4-11.8,3.4c-6.3,0-11.4-1.9-15.1-5.9s-5.8-9.9-6.3-17.7h53.2V518z M797,511.2c1-6.8,3.4-11.9,6.9-15.4c3.7-3.5,8.3-5.2,13.9-5.2c5.5,0,10,1.7,13.5,5c3.5,3.3,5.5,8.5,6.1,15.6H797z"/>
+        </g>
+      </svg>
+    </div>
+    <p class="footer-copy">© 2026 Sourceable. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="mailto:hello@sourceablerecruiting.com">hello@sourceablerecruiting.com</a>
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        nav.style.boxShadow = '0 4px 32px rgba(46,43,39,0.08)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
