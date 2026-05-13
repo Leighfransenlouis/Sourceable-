@@ -1603,6 +1603,28 @@
         });
         const data = await res.json();
         if (data.success) {
+          document.querySelector('.client-form-body').classList.add('hidden');
+          document.getElementById('clientSuccess').classList.add('visible');
+        }
+      } catch(err) {
+        console.error('Form error:', err);
+      }
+    });
+
+    // Candidate form submission via Web3Forms
+    document.getElementById('candidateForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      formData.append('access_key', '3539166e-1d66-48a6-a8de-876f8d044ee3');
+      formData.append('subject', 'New Candidate Inquiry - Sourceable');
+      formData.append('replyto', 'Leigh@Sourceablerecruiting.com');
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        if (data.success) {
           document.querySelector('.modal-form').classList.add('hidden');
           document.getElementById('candidateSuccess').classList.add('visible');
         }
@@ -1667,27 +1689,6 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // Candidate form submission via Web3Forms
-    document.getElementById('candidateForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      formData.append('access_key', '3539166e-1d66-48a6-a8de-876f8d044ee3');
-      formData.append('subject', 'New Candidate Inquiry - Sourceable');
-      formData.append('replyto', 'Leigh@Sourceablerecruiting.com');
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        });
-        const data = await res.json();
-        if (data.success) {
-          document.querySelector('.modal-form').classList.add('hidden');
-          document.querySelector('.modal-success').classList.add('visible');
-        }
-      } catch(err) {
-        console.error('Form error:', err);
-      }
-    });
   </script>
 
   <!-- CANDIDATE MODAL -->
