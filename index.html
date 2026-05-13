@@ -1668,26 +1668,41 @@
     });
 
     // Candidate form submission via Web3Forms
-    document.getElementById('candidateForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      formData.append('access_key', 'bfe7eed4-300f-4b32-b8e4-1aa3f48850ee');
-      formData.append('subject', 'New Candidate Inquiry - Sourceable');
-      formData.append('replyto', 'Leigh@Sourceablerecruiting.com');
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        });
-        const data = await res.json();
-        if (data.success) {
-          document.querySelector('#candidateModal .modal-form').classList.add('hidden');
-          document.getElementById('candidateSuccess').classList.add('visible');
-        }
-      } catch(err) {
-        console.error('Form error:', err);
+document.addEventListener('DOMContentLoaded', function () {
+  const candidateForm = document.getElementById('candidateForm');
+
+  if (!candidateForm) return;
+
+  candidateForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    if (!candidateForm.checkValidity()) {
+      candidateForm.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(candidateForm);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        document.querySelector('#candidateModal .modal-form').classList.add('hidden');
+        document.getElementById('candidateSuccess').classList.add('visible');
+        candidateForm.reset();
+      } else {
+        console.error('Web3Forms error:', data);
       }
-    });
+    } catch (err) {
+      console.error('Form error:', err);
+    }
+  });
+});
   </script>
 
   <!-- CANDIDATE MODAL -->
