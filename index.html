@@ -1681,7 +1681,7 @@
         });
         const data = await res.json();
         if (data.success) {
-          document.querySelector('.modal-form').classList.add('hidden');
+          document.querySelector('#candidateModal .modal-form').classList.add('hidden');
           document.getElementById('candidateSuccess').classList.add('visible');
         }
       } catch(err) {
