@@ -1,10 +1,11 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sourceable | Executive Search & Sourcing</title>
+  <title>Sourceable | The Right Hire Changes Everything</title>
   <meta name="description" content="Sourceable helps enterprise SaaS, cyber, and AI software companies hire top-performing sales and go-to-market talent. The right hire changes everything." />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -1503,6 +1504,7 @@
             <form id="clientForm" novalidate>
               <input type="hidden" name="access_key" value="3539166e-1d66-48a6-a8de-876f8d044ee3" />
               <input type="hidden" name="subject" value="New Search Inquiry - Sourceable" />
+              <input type="hidden" name="replyto" value="Leigh@Sourceablerecruiting.com" />
               <div class="cform-grid">
                 <div class="cform-field">
                   <label for="c-name">Full Name</label>
@@ -1601,9 +1603,8 @@
         });
         const data = await res.json();
         if (data.success) {
-          form.closest('.client-form-body') && form.closest('.client-form-body').classList.add('hidden');
-          form.parentElement.classList.add('hidden');
-          document.getElementById('clientSuccess').classList.add('visible');
+          document.querySelector('.modal-form').classList.add('hidden');
+          document.querySelector('.modal-success').classList.add('visible');
         }
       } catch(err) {
         console.error('Form error:', err);
@@ -1672,6 +1673,7 @@
       const formData = new FormData(this);
       formData.append('access_key', '3539166e-1d66-48a6-a8de-876f8d044ee3');
       formData.append('subject', 'New Candidate Inquiry - Sourceable');
+      formData.append('replyto', 'Leigh@Sourceablerecruiting.com');
       try {
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
@@ -1679,8 +1681,8 @@
         });
         const data = await res.json();
         if (data.success) {
-          document.querySelector('.modal-form').classList.add('hidden');
-          document.querySelector('.modal-success').classList.add('visible');
+          document.querySelector('.client-form-body').classList.add('hidden');
+          document.getElementById('clientSuccess').classList.add('visible');
         }
       } catch(err) {
         console.error('Form error:', err);
