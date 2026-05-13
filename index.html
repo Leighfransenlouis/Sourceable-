@@ -1604,7 +1604,7 @@
         const data = await res.json();
         if (data.success) {
           document.querySelector('.modal-form').classList.add('hidden');
-          document.querySelector('.modal-success').classList.add('visible');
+          document.getElementById('candidateSuccess').classList.add('visible');
         }
       } catch(err) {
         console.error('Form error:', err);
@@ -1727,7 +1727,7 @@
       </div>
 
       <!-- Success state -->
-      <div class="modal-success">
+      <div class="modal-success" id="candidateSuccess">
         <div class="modal-success-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#e8dfd2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 6L9 17l-5-5"/>
