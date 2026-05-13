@@ -1504,7 +1504,6 @@
             <form id="clientForm" novalidate>
               <input type="hidden" name="access_key" value="3539166e-1d66-48a6-a8de-876f8d044ee3" />
               <input type="hidden" name="subject" value="New Search Inquiry - Sourceable" />
-              <input type="hidden" name="replyto" value="Leigh@Sourceablerecruiting.com" />
               <div class="cform-grid">
                 <div class="cform-field">
                   <label for="c-name">Full Name</label>
@@ -1603,30 +1602,9 @@
         });
         const data = await res.json();
         if (data.success) {
-          document.querySelector('.client-form-body').classList.add('hidden');
+          form.closest('.client-form-body') && form.closest('.client-form-body').classList.add('hidden');
+          form.parentElement.classList.add('hidden');
           document.getElementById('clientSuccess').classList.add('visible');
-        }
-      } catch(err) {
-        console.error('Form error:', err);
-      }
-    });
-
-    // Candidate form submission via Web3Forms
-    document.getElementById('candidateForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      formData.append('access_key', '3539166e-1d66-48a6-a8de-876f8d044ee3');
-      formData.append('subject', 'New Candidate Inquiry - Sourceable');
-      formData.append('replyto', 'Leigh@Sourceablerecruiting.com');
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        });
-        const data = await res.json();
-        if (data.success) {
-          document.querySelector('.modal-form').classList.add('hidden');
-          document.getElementById('candidateSuccess').classList.add('visible');
         }
       } catch(err) {
         console.error('Form error:', err);
@@ -1689,6 +1667,27 @@
       if (e.key === 'Escape') closeModal();
     });
 
+    // Candidate form submission via Web3Forms
+    document.getElementById('candidateForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      formData.append('access_key', '3539166e-1d66-48a6-a8de-876f8d044ee3');
+      formData.append('subject', 'New Candidate Inquiry - Sourceable');
+      formData.append('replyto', 'Leigh@Sourceablerecruiting.com');
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.querySelector('.modal-form').classList.add('hidden');
+          document.getElementById('candidateSuccess').classList.add('visible');
+        }
+      } catch(err) {
+        console.error('Form error:', err);
+      }
+    });
   </script>
 
   <!-- CANDIDATE MODAL -->
