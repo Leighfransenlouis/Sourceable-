@@ -1646,63 +1646,70 @@
       }
     });
 
-    // Modal
-    function openModal() {
-      document.getElementById('candidateModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
+    <script>
+  // Modal
+  function openModal() {
+    document.getElementById('candidateModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-    function closeModal() {
-      document.getElementById('candidateModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+  function closeModal() {
+    document.getElementById('candidateModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  window.addEventListener('load', function () {
+    const candidateModal = document.getElementById('candidateModal');
+    const candidateForm = document.getElementById('candidateForm');
 
     // Close on overlay click
-    document.getElementById('candidateModal').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
+    if (candidateModal) {
+      candidateModal.addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+      });
+    }
 
     // Close on Escape
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeModal();
     });
-// Candidate form submission via Web3Forms
-document.addEventListener('DOMContentLoaded', function () {
-  const candidateForm = document.getElementById('candidateForm');
 
-  if (!candidateForm) return;
+    // Candidate form submission via Web3Forms
+    if (candidateForm) {
+      candidateForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-  candidateForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
+        if (!candidateForm.checkValidity()) {
+          candidateForm.reportValidity();
+          return;
+        }
 
-    if (!candidateForm.checkValidity()) {
-      candidateForm.reportValidity();
-      return;
-    }
+        const formData = new FormData(candidateForm);
 
-    const formData = new FormData(candidateForm);
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+          });
 
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
+          const data = await res.json();
+
+          if (data.success) {
+            document.querySelector('#candidateModal .modal-form').style.display = 'none';
+            document.getElementById('candidateSuccess').style.display = 'block';
+            candidateForm.reset();
+          } else {
+            console.error('Web3Forms error:', data);
+            alert('The form did not submit. Please try again.');
+          }
+        } catch (err) {
+          console.error('Form error:', err);
+          alert('Something went wrong submitting the form. Please try again.');
+        }
       });
-
-      const data = await res.json();
-
-      if (data.success) {
-        document.querySelector('#candidateModal .modal-form').classList.add('hidden');
-        document.getElementById('candidateSuccess').classList.add('visible');
-        candidateForm.reset();
-      } else {
-        console.error('Web3Forms error:', data);
-      }
-    } catch (err) {
-      console.error('Form error:', err);
     }
   });
-});
-  </script>
+</script>
     
   <!-- CANDIDATE MODAL -->
   <div class="modal-overlay" id="candidateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
