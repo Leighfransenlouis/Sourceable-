@@ -1666,7 +1666,43 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeModal();
     });
+// Candidate form submission via Web3Forms
+document.addEventListener('DOMContentLoaded', function () {
+  const candidateForm = document.getElementById('candidateForm');
 
+  if (!candidateForm) return;
+
+  candidateForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    if (!candidateForm.checkValidity()) {
+      candidateForm.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(candidateForm);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        document.querySelector('#candidateModal .modal-form').classList.add('hidden');
+        document.getElementById('candidateSuccess').classList.add('visible');
+        candidateForm.reset();
+      } else {
+        console.error('Web3Forms error:', data);
+      }
+    } catch (err) {
+      console.error('Form error:', err);
+    }
+  });
+});
+  </script>
     
   <!-- CANDIDATE MODAL -->
   <div class="modal-overlay" id="candidateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -1720,42 +1756,6 @@
     </div>
   </div>
 
-// Candidate form submission via Web3Forms
-document.addEventListener('DOMContentLoaded', function () {
-  const candidateForm = document.getElementById('candidateForm');
 
-  if (!candidateForm) return;
-
-  candidateForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    if (!candidateForm.checkValidity()) {
-      candidateForm.reportValidity();
-      return;
-    }
-
-    const formData = new FormData(candidateForm);
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        document.querySelector('#candidateModal .modal-form').classList.add('hidden');
-        document.getElementById('candidateSuccess').classList.add('visible');
-        candidateForm.reset();
-      } else {
-        console.error('Web3Forms error:', data);
-      }
-    } catch (err) {
-      console.error('Form error:', err);
-    }
-  });
-});
-  </script>
 </body>
 </html>
